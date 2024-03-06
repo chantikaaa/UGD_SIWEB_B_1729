@@ -2,6 +2,7 @@ import {
   UserGroupIcon,
   HomeIcon,
   DocumentDuplicateIcon,
+  ClipboardDocumentCheckIcon
 } from '@heroicons/react/24/outline';
 import { kanit } from '../fonts';
 
@@ -15,6 +16,7 @@ const links = [
     icon: DocumentDuplicateIcon,
   },
   { name: 'Customers', href: '/dashboard/customers', icon: UserGroupIcon },
+  { name: 'Reservations', href: '/dashboard/reservations', icon: ClipboardDocumentCheckIcon},
 ];
 
 export default function NavLinks() {

@@ -3,7 +3,9 @@ import Image from 'next/image';
 import bg_hero from '../public/bg_hero.png';
 import { anton } from '@/app/ui/fonts';
 import { kanit } from '@/app/ui/fonts';
-import { UserIcon } from '@heroicons/react/24/outline';
+import { UserIcon, ArrowRightCircleIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
+
 
 export default function Page() {
   return (
@@ -41,6 +43,16 @@ export default function Page() {
           <p className={`${anton.className} text-6xl md:text-7xl text-white tracking-wider md:whitespace-nowrap`}>
             <strong>Admin Dashboard</strong>
           </p>
+          <Link
+            href= "/dashboard"
+          >
+            <h1
+              className={`${kanit.className} antialiased flex text-white text-[20px] hover:text-teal-500`}
+            >
+              Go to Dashboard
+            <ArrowRightCircleIcon className='w-6 mx-2'/>
+            </h1>
+          </Link>
         </div>
 
       <div className="absolute top-0 left-0 z-10 p-4 md:p-6">
@@ -49,6 +61,7 @@ export default function Page() {
         </div>
         </div>
       </div>
+      
     </main>
   );
 }

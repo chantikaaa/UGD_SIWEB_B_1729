@@ -1,6 +1,9 @@
 import Link from 'next/link';
 import NavLinks from '@/app/ui/dashboard/nav-links';
-import { PowerIcon } from '@heroicons/react/24/outline';
+import { 
+  ArrowUturnLeftIcon,
+  PowerIcon
+ } from '@heroicons/react/24/outline';
 import { kanit } from '../fonts';
 
 export default function SideNav() {
@@ -19,6 +22,14 @@ export default function SideNav() {
       <div className="flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
         <NavLinks />
         <div className="hidden h-auto w-full grow rounded-md bg-gray-50 md:block"></div>
+        {/* Back */}
+        <Link href="/">
+          <button className="flex h-[48px] w-full grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-amber-100 hover:text-amber-950 md:flex-none md:justify-start md:p-2 md:px-3">
+          <ArrowUturnLeftIcon className="w-6"/>
+          <div className={`${kanit.className} hidden md:block`}>
+            Back</div>
+          </button>
+        </Link>
         <form>
           <button className="flex h-[48px] w-full grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-amber-100 hover:text-amber-950 md:flex-none md:justify-start md:p-2 md:px-3">
             <PowerIcon className="w-6" />

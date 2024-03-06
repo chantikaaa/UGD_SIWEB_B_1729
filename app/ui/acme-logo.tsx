@@ -13,8 +13,7 @@ export default function AcmeLogo() {
         height={38} 
         className="rotate-[15deg]"
       />
-      <p className="text-[30px]">Atma</p>
-      <p className="text-[30px]">Barbershop</p>
+      <p className="mx-4 text-[30px]">Atma Barbershop</p>
     </div>
   );
 }

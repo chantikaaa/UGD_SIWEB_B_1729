@@ -22,7 +22,7 @@ export default function Page() {
       <div className={`${kanit.className} flex justify-end space-x-2 p-6 text-lg font-normal`}>
         <button
         // button utk desktop
-          className="hidden md:inline-flex px-4 py-2 text-black transition duration-700 ease-out bg-white border border-black rounded-lg hover:bg-black hover:border hover:text-white dark:border-white dark:bg-inherit dark:text-white dark:hover:bg-white dark:hover:text-black md:px-10"
+          className="hidden md:block px-4 py-2 text-black transition duration-700 ease-out bg-white border border-black rounded-lg hover:bg-black hover:border hover:text-white dark:border-white dark:bg-inherit dark:text-white dark:hover:bg-white dark:hover:text-black md:px-10"
           >Login</button>
           
         <div className="md:hidden">

@@ -4,7 +4,7 @@ import {
   ArrowUturnLeftIcon,
   PowerIcon
  } from '@heroicons/react/24/outline';
-import { kanit } from '../fonts';
+import { kanit, inter } from '../fonts';
 
 export default function SideNav() {
   return (
@@ -26,14 +26,14 @@ export default function SideNav() {
         <Link href="/">
           <button className="flex h-[48px] w-full grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-amber-100 hover:text-amber-950 md:flex-none md:justify-start md:p-2 md:px-3">
           <ArrowUturnLeftIcon className="w-6"/>
-          <div className={`${kanit.className} hidden md:block`}>
+          <div className={`${inter.className} hidden md:block`}>
             Back</div>
           </button>
         </Link>
         <form>
           <button className="flex h-[48px] w-full grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-amber-100 hover:text-amber-950 md:flex-none md:justify-start md:p-2 md:px-3">
             <PowerIcon className="w-6" />
-            <div className={`${kanit.className} hidden md:block`}>Sign Out</div>
+            <div className={`${inter.className} hidden md:block`}>Sign Out</div>
           </button>
         </form>
       </div>

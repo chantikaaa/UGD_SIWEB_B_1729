@@ -8,7 +8,7 @@ const users = [
     password: '123456',
   },
 ];
-
+ 
 const customers = [
   {
     id: '3958dc9e-712f-4377-85e9-fec4b6a6442a',
@@ -70,9 +70,21 @@ const customers = [
     email: 'balazs@orban.com',
     image_url: '/customers/balazs-orban.png',
   },
+  {
+    id: '3958dc9e-729f-4377-85e9-fec4b6a6442a',
+    name: 'Cinta Chantika Lestari',
+    email: '221711729@students.uajy.ac.id',
+    image_url: '/customers/cinta-chantika.jpg',
+  },
 ];
-
+ 
 const invoices = [
+  {
+    customer_id: customers[10].id,
+    amount: 8945,
+    status: 'paid',
+    date: '2024-10-08',
+  },
   {
     customer_id: customers[0].id,
     amount: 15795,
@@ -115,12 +127,12 @@ const invoices = [
     status: 'pending',
     date: '2023-06-27',
   },
-  {
-    customer_id: customers[3].id,
-    amount: 32545,
-    status: 'paid',
-    date: '2023-06-09',
-  },
+  // {
+  //   customer_id: customers[3].id,
+  //   amount: 32545,
+  //   status: 'paid',
+  //   date: '2023-06-09',
+  // },
   {
     customer_id: customers[4].id,
     amount: 1250,
@@ -162,9 +174,9 @@ const invoices = [
     amount: 1000,
     status: 'paid',
     date: '2022-06-05',
-  },
+  }
 ];
-
+ 
 const revenue = [
   { month: 'Jan', revenue: 2000 },
   { month: 'Feb', revenue: 1800 },
@@ -179,10 +191,21 @@ const revenue = [
   { month: 'Nov', revenue: 3000 },
   { month: 'Dec', revenue: 4800 },
 ];
-
+ 
+const reservations = [
+  {
+    customer_id: customers[10].id,
+    email: '221711729@students.uajy.ac.id',
+    amount: 15795,
+    status: 'pending',
+    date: '2024-10-08',
+  },
+];
+ 
 module.exports = {
   users,
   customers,
   invoices,
   revenue,
-};
+  reservations,
+}

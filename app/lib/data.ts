@@ -7,10 +7,15 @@ import {
   LatestInvoiceRaw,
   User,
   Revenue,
+  LatestReservationRaw,
+  ReservationsTable,
+  ReservationForm
 } from './definitions';
 import { formatCurrency } from './utils';
+import { unstable_noStore } from 'next/cache';
 
 export async function fetchRevenue() {
+  unstable_noStore();
   // Add noStore() here to prevent the response from being cached.
   // This is equivalent to in fetch(..., {cache: 'no-store'}).
 
@@ -227,5 +232,81 @@ export async function getUser(email: string) {
   } catch (error) {
     console.error('Failed to fetch user:', error);
     throw new Error('Failed to fetch user.');
+  }
+}
+
+export async function fetchLatestReservations() {
+  try {
+    const data = await sql<LatestReservationRaw>`
+      SELECT reservations.amount, customers.name, customers.image_url, customers.email, reservations.id
+      FROM reservations
+      JOIN customers ON reservations.customer_id = customers.id
+      ORDER BY reservations.date DESC
+      LIMIT 5`;
+
+    const LatestReservations = data.rows.map((reservation) => ({
+      ...reservation,
+      amount: formatCurrency(reservation.amount),
+    }));
+    return LatestReservations;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch the latest reservations.');
+  }
+}
+
+export async function fetchFilteredReservations(
+  query: string,
+  currentPage: number,
+) {
+  const offset = (currentPage - 1) * ITEMS_PER_PAGE;
+
+  try {
+    const reservations = await sql<ReservationsTable>`
+      SELECT
+       reservations.id,
+       reservations.amount,
+       reservations.date,
+       reservations.status,
+       customers.name,
+       customers.email,
+       customers.image_url
+      FROM reservations
+      JOIN customers ON reservations.customer_id = customers.id
+      WHERE
+        customers.name ILIKE ${`%${query}%`} OR
+        customers.email ILIKE ${`%${query}%`} OR
+        reservations.amount::text ILIKE ${`%${query}%`} OR
+        reservations.date::text ILIKE ${`%${query}%`} OR
+        reservations.status ILIKE ${`%${query}%`}
+      ORDER BY reservations.date DESC
+      LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
+    `;
+
+    return reservations.rows;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch reservations.');
+  }
+}
+
+export async function fetchReservationsPages(query: string) {
+  try {
+    const count = await sql`SELECT COUNT(*)
+    FROM reservations
+    JOIN customers ON reservations.customer_id = customers.id
+    WHERE
+      customers.name ILIKE ${`%${query}%`} OR
+      customers.email ILIKE ${`%${query}%`} OR
+      reservations.amount::text ILIKE ${`%${query}%`} OR
+      reservations.date::text ILIKE ${`%${query}%`} OR
+      reservations.status ILIKE ${`%${query}%`}
+  `;
+
+    const totalPages = Math.ceil(Number(count.rows[0].count) / ITEMS_PER_PAGE);
+    return totalPages;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch total number of reservations.');
   }
 }

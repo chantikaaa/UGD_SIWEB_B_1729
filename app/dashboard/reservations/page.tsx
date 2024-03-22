@@ -1,11 +1,30 @@
-import { kanit } from "@/app/ui/fonts";
+import { Card } from "@/app/ui/dashboard/cards";
+import LatestReservations from "@/app/ui/dashboard/latest-reservations";
+import { fetchLatestReservations } from "@/app/lib/data";
+import ReservationsTable from "@/app/ui/reservations/table";
+import { CreateReservations } from "@/app/ui/reservations/buttons";
+import Search from "@/app/ui/search";
+import Table from "@/app/ui/reservations/table"
+import { 
+    kanit, 
+    lusitana, 
+    inter 
+} from "@/app/ui/fonts";
 
-export default function Page() {
+export default async function Page() {
     return (
-    <div> 
-        <p className={`${kanit.className}`}>Reservation Page</p>
-        <p className={`${kanit.className}`}>221711729 </p>
-        <p className={`${kanit.className}`}>Cinta Chantika Lestari </p>
+    <div className= "flex min-h-screen flex-col">
+        <p className={`${lusitana.className} text-2xl`}>Reservations</p>
+        <p className={`${lusitana.className}`}>221711729 </p>
+        <p className={`${lusitana.className}`}>Cinta Chantika Lestari </p>
+
+        <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
+            <Search placeholder="Search reservations..."/>
+            <CreateReservations/>
+        </div>
+        <div className="mt-5 flex w-full justify-center">            
+        </div>
+        <Table query= ""currentPage={1}/>
     </div>
     );
     }

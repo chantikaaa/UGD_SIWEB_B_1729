@@ -1,11 +1,13 @@
 import { Card } from '@/app/ui/dashboard/cards';
 import RevenueChart from '@/app/ui/dashboard/revenue-chart';
 import LatestInvoices from '@/app/ui/dashboard/latest-invoices';
+import LatestReservations from '../ui/dashboard/latest-reservations';
 import { kanit, inter } from "../ui/fonts";
 import { 
         fetchRevenue, 
         fetchLatestInvoices,
-        fetchCardData 
+        fetchCardData,
+        fetchLatestReservations 
     } from '@/app/lib/data';
 
 export default async function Page() {
@@ -17,6 +19,7 @@ export default async function Page() {
         totalPaidInvoices,
         totalPendingInvoices,
       } = await fetchCardData();
+      const latestReservations = await fetchLatestReservations();
     return (
         <main>
         <h1 className={`${kanit.className}`}>Dashboard</h1>
@@ -33,6 +36,7 @@ export default async function Page() {
       <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
         <RevenueChart revenue={revenue}  />
         <LatestInvoices latestInvoices={latestInvoices} />
+        <LatestReservations latestReservations={latestReservations} />
       </div>
         </main>
     )

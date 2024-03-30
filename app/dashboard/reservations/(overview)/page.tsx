@@ -10,8 +10,11 @@ import {
     lusitana, 
     inter 
 } from "@/app/ui/fonts";
+import { CreateReservationsSkeleton, ReservationsTableSkeleton, SearchReservationsSkeleton } from "@/app/ui/skeletons";
+import { Suspense } from "react";
 
 export default async function Page() {
+    await new Promise((resolve) => setTimeout(resolve, 3000));
     return (
     <div className= "flex min-h-screen flex-col">
         <p className={`${lusitana.className} text-2xl`}>Reservations</p>
@@ -19,12 +22,18 @@ export default async function Page() {
         <p className={`${lusitana.className}`}>Cinta Chantika Lestari </p>
 
         <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
-            <Search placeholder="Search reservations..."/>
-            <CreateReservations/>
+            <Suspense fallback={<SearchReservationsSkeleton/>}>
+                <Search placeholder="Search reservations..."/>
+            </Suspense>
+            <Suspense fallback={<CreateReservationsSkeleton/>}>
+                <CreateReservations/>
+            </Suspense>
         </div>
         <div className="mt-5 flex w-full justify-center">            
         </div>
-        <Table query= ""currentPage={1}/>
+        <Suspense fallback={<ReservationsTableSkeleton/>}>
+            <Table query= ""currentPage={1}/>
+        </Suspense>
     </div>
     );
     }

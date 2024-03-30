@@ -2,7 +2,8 @@ import { PencilIcon, PlusIcon, TrashIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { inter } from '../fonts';
 
-export function CreateReservations() {
+export async function CreateReservations() {
+  await new Promise((resolve) => setTimeout(resolve, 5000));
   return (
     <Link
       href="/dashboard/reservations/create"

@@ -1,14 +1,12 @@
-import { LatestReservation } from '@/app/lib/definitions';
 import { ArrowPathIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import Image from 'next/image';
 import { inter, kanit, lusitana } from '@/app/ui/fonts';
-import { reservations } from '@/app/lib/placeholder-data';
-export default async function LatestReservations({
-  latestReservations,
-}: {
-  latestReservations: LatestReservation[];
-}) {
+import { fetchLatestReservations } from '@/app/lib/data';
+
+export default async function LatestReservations() {
+  const latestReservations = await fetchLatestReservations();
+
   return (
     <div className="flex w-full flex-col md:col-span-4">
       <h2 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>

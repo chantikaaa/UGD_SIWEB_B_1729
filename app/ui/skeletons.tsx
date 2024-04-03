@@ -270,6 +270,12 @@ export function CreateReservationsSkeleton() {
   );
 }
 
+export function ReservationTitle() {
+  return (
+    <div className={`${shimmer} relative mb-4 h-10 w-36 overflow-hidden rounded-md bg-gray-100`}>
+    </div>
+  );
+}
 
 export function ReservationsMobileSkeleton() {
   return (
@@ -351,7 +357,7 @@ export function ReservationsTableSkeleton() {
 export function ReservationsDashboardSkeleton() {
   return (
     <>
-      <div className={`${shimmer} relative mb-6 h-10 w-36 overflow-hidden rounded-md bg-gray-100`}/>
+      <div className={`${shimmer} relative mb-6 h-10 w-36 overflow-hidden rounded-md bg-gray-100`}></div>
       <div className={`${shimmer} relative flex flex-wrap gap-4`}>
         <SearchReservationsSkeleton />
         <CreateReservationsSkeleton />

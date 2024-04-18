@@ -183,6 +183,32 @@ export async function fetchInvoiceById(id: string) {
   }
 }
 
+export async function fetchReservationById(id: string) {
+  noStore();
+  try {
+    const data = await sql<ReservationForm>`
+      SELECT
+        reservations.id,
+        reservations.customer_id,
+        reservations.amount,
+        reservations.status
+      FROM reservations
+      WHERE reservations.id = ${id};
+    `;
+
+    const reservation = data.rows.map((reservation) => ({
+      ...reservation,
+      // Convert amount from cents to dollars
+      amount: reservation.amount / 100,
+    }));
+
+    return reservation[0];
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch reservation.');
+  }
+}
+
 export async function fetchCustomers() {
   try {
     const data = await sql<CustomerField>`
@@ -275,7 +301,8 @@ export async function fetchFilteredReservations(
   currentPage: number,
 ) {
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
-
+  noStore();
+  
   try {
     const reservations = await sql<ReservationsTable>`
       SELECT
@@ -317,6 +344,7 @@ export async function fetchReservationsPages(query: string) {
       reservations.date::text ILIKE ${`%${query}%`} OR
       reservations.status ILIKE ${`%${query}%`}
   `;
+  // newwwwwwwwwwwwwwwwwwwwwww
 
     const totalPages = Math.ceil(Number(count.rows[0].count) / ITEMS_PER_PAGE);
     return totalPages;

@@ -7,15 +7,17 @@ import {
   UserCircleIcon,
 } from '@heroicons/react/24/outline';
 import { Button } from '@/app/ui/button';
+import { createReservation } from '@/app/lib/actions';
+import { inter } from '../fonts';
 
 export default function Form({ customers }: { customers: CustomerField[] }) {
   return (
-    <form>
+    <form action={createReservation}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         {/* Customer Name */}
-        <div className="mb-4">
+        <div className={`${inter.className} mb-4`}>
           <label htmlFor="customer" className="mb-2 block text-sm font-medium">
-            Choose customer
+            <strong>Choose customer</strong>
           </label>
           <div className="relative">
             <select
@@ -38,7 +40,7 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
         </div>
 
         {/* Reservation Amount */}
-        <div className="mb-4">
+        <div className={`${inter.className} mb-4`}>
           <label htmlFor="amount" className="mb-2 block text-sm font-medium">
             Choose an amount
           </label>
@@ -59,11 +61,11 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
 
         {/* Reservation Status */}
         <fieldset>
-          <legend className="mb-2 block text-sm font-medium">
+          <legend className={`${inter.className} mb-2 block text-sm font-medium`}>
             Set the reservation status
           </legend>
           <div className="rounded-md border border-gray-200 bg-white px-[14px] py-3">
-            <div className="flex gap-4">
+            <div className={`${inter.className} flex gap-4`}>
               <div className="flex items-center">
                 <input
                   id="pending"
@@ -98,7 +100,7 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
           </div>
         </fieldset>
       </div>
-      <div className="mt-6 flex justify-end gap-4">
+      <div className={`${inter.className} mt-6 flex justify-end gap-4`}>
         <Link
           href="/dashboard/reservations"
           className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"

@@ -195,10 +195,9 @@ const revenue = [
 const reservations = [
   {
     customer_id: customers[10].id,
-    email: '221711729@students.uajy.ac.id',
     amount: 15795,
     status: 'pending',
-    date: '2024-10-08',
+    date: '2024-01-12',
   },
 ];
  

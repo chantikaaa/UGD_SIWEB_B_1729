@@ -16,7 +16,7 @@ export default function EditReservationForm({
   reservation,
   customers,
 }: {
-  reservation: ReservationForm;
+   reservation: ReservationForm;
   customers: CustomerField[];
 }) {
   const updateReservationWithId = updateReservation.bind(null, reservation.id);

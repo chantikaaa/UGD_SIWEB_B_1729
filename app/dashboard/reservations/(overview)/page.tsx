@@ -1,4 +1,4 @@
-import Pagination from '@/app/ui/invoices/pagination';
+import Pagination from '@/app/ui/reservations/pagination';
 import { Card } from "@/app/ui/dashboard/cards";
 import LatestReservations from "@/app/ui/dashboard/latest-reservations";
 import { fetchLatestReservations } from "@/app/lib/data";

@@ -14,6 +14,11 @@ import {
 } from "@/app/ui/fonts";
 import { CreateReservationsSkeleton, ReservationsTableSkeleton, SearchReservationsSkeleton, ReservationTitle } from "@/app/ui/skeletons";
 import { Suspense } from "react";
+import { Metadata } from 'next';
+ 
+export const metadata: Metadata = {
+  title: 'Reservations',
+};
 
 export default async function Page({
     searchParams,

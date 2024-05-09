@@ -10,6 +10,7 @@ import {
 import Link from 'next/link';
 import { Button } from '@/app/ui/button';
 import { updateReservation } from '@/app/lib/actions'
+import { useFormState } from 'react-dom';
 import { inter } from '../fonts';
 
 export default function EditReservationForm({
@@ -19,10 +20,12 @@ export default function EditReservationForm({
   reservation: ReservationForm;
   customers: CustomerField[];
 }) {
+  const initialState = { message: null, errors: {} };
   const updateReservationWithId = updateReservation.bind(null, reservation.id);
+  const [state, dispatch] = useFormState(updateReservationWithId, initialState);
 
   return (
-    <form action={updateReservationWithId}>
+    <form action={dispatch}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         {/* Customer Name */}
         <div className={`${inter.className} mb-4`}>

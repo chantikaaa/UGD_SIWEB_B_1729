@@ -5,6 +5,7 @@ import {
   PowerIcon
  } from '@heroicons/react/24/outline';
 import { kanit, inter } from '../fonts';
+import { signOut } from '@/auth';
 
 export default function SideNav() {
   return (
@@ -30,7 +31,12 @@ export default function SideNav() {
             <strong>Back</strong></div>
           </button>
         </Link>
-        <form>
+        <form
+          action={async () => {
+            'use server';
+            await signOut();
+          }}
+        >
           <button className="flex h-[48px] w-full grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-amber-100 hover:text-amber-950 md:flex-none md:justify-start md:p-2 md:px-3">
             <PowerIcon className="w-6" />
             <div className={`${inter.className} hidden md:block`}><strong>Sign Out</strong></div>
